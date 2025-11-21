@@ -19,12 +19,12 @@
 <body>
 
     <header>
-        <h1>🍎 School Volunteer Hub</h1>
+        <h1> Vo</h1>
         <p>Find and manage school volunteer opportunities.</p>
     </header>
 
     <section id="login-container">
-        <h2>🔒 User Login</h2>
+        <h2> User Login</h2>
         <form id="login-form">
             <div>
                 <label for="login-username">Username:</label>
@@ -35,28 +35,28 @@
                 <input type="password" id="login-password" required>
             </div>
             <button type="submit">Log In</button>
-            <p style="margin-top: 15px;">*Use **admin** / **admin123** to log in.</p> 
-            <p id="login-message" style="color: red; margin-top: 10px;" class="hidden"></p>
+            <p style="margin-top: 15px;">*Use **justin** / **justin123** to log in.</p> 
+            <p id="login-message" style="color: rgb(0, 0, 0); margin-top: 10px;" class="hidden"></p>
         </form>
     </section>
     
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault()
 
             const usernameInput = document.getElementById('login-username').value;
             const passwordInput = document.getElementById('login-password').value;
             const loginMessage = document.getElementById('login-message');
 
-            const correctUsername = 'admin';
-            const correctPassword = 'admin123';
+            const correctUsername = 'justin';
+            const correctPassword = 'justin123';
 
             // Check credentials
             if (usernameInput === correctUsername && passwordInput === correctPassword) {
-                // Successful login: Redirect to the homepage
-                window.location.href = 'homepage.html';
+                // Successful login: Redirect to the landing page
+                window.location.href = 'landing.html';
             } else {
-                // Failed login: Display an error message (I'll use an alert as you requested, but also a message on the page)
+                // Failed login: Display an error message
                 alert('Login Failed: Decline. Please check your username and password.');
                 loginMessage.textContent = 'Login Failed: Decline.';
                 loginMessage.classList.remove('hidden');

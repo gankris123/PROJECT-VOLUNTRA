@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Need Help - Voluntra</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</head>
+<body>
+     <header>
+        <h1>Voluntra</h1>
+        <nav>
+           
+            <a href="#need-form">Post Need</a>
+             <a href="index.html">log out</a>
+        </nav>
+    </header>
+    
+    <section id="need-form" class="content form-section">
+        <div class="form-container">
+            <h2>Post Your Need</h2>
+            <p>Fill out the form below to submit your request. Helpers will be able to see and choose to assist you.</p>
+            <form id="help-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="location-input-group">
+                            <input type="text" id="location" name="location" placeholder="City, State/Country" required>
+                            <button type="button" id="select-location-btn" class="location-btn">Select on Map</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select</option>
+                            <option value="personal">Personal Help</option>
+                            <option value="calamity">Calamity Relief</option>
+                            <option value="financial">Financial Aid</option>
+                            <option value="medical">Medical Assistance</option>
+                            <option value="education">Educational Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency" name="urgency" required>
+                            <option value="">Select</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Describe Your Need</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Please provide detailed information..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Upload Images (Optional)</label>
+                        <input type="file" id="image" name="image" accept="image/*" multiple>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+     
+     <section class="content info-section">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>1. Post Your Need</h3>
+                <p>Fill out the form with details about what you need help with.</p>
+            </div>
+            <div class="step">
+                <h3>2. Get Matched</h3>
+                <p>Helpers in our community will see your post and choose to assist.</p>
+            </div>
+            <div class="step">
+                <h3>3. Receive Help</h3>
+                <p>Connect with helpers and get the support you need.</p>
+            </div>
+        </div>
+    </section>
+      <section id="posts-section" class="content posts-section">
+        <h2>Recent Help Requests</h2>
+        <div id="posts-container">
+          
+        </div>
+    </section>
+     <footer id="footer" class="footer">
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@volunteernetwork.com">info@volunteernetwork.com</a></p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <p>Address: 2025 Community Street, Hope City</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a><br>
+                <a href="need-help.html">Need Help</a><br>
+                <a href="give-help.html">Give Help</a><br>
+                <a href="#need-form">Post Need</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <p><a href="#" target="_blank">📘 Facebook</a></p>
+                <p><a href="#" target="_blank">🐦 Twitter / X</a></p>
+                <p><a href="#" target="_blank">📸 Instagram</a></p>
+                <p><a href="#" target="_blank">💼 LinkedIn</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Voluntra — Making the world better together 🌍</p>
+        </div>
+    </footer>
+     <div id="map-modal" class="modal">
+        <div class="modal-content map-content">
+            <span class="close">&times;</span>
+            <h2>Select Location</h2>
+            <div class="search-container">
+                <input type="text" id="location-search" placeholder="Search for a place...">
+                <button id="search-btn">Search</button>
+            </div>
+            <div id="map" style="height: 400px;"></div>
+            <button id="confirm-location-btn" class="submit-btn" style="margin-top: 10px;">Confirm Location</button>
+        </div>
+    </div>
+    <div id="image-modal" class="modal">
+        <div class="modal-content gallery-content">
+            <span class="close">&times;</span>
+            <h2>All Images</h2>
+            <div id="image-gallery" class="image-gallery"></div>
+        </div>
+    </div>
+     <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Your Post</h2>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="edit-name">Full Name</label>
+                    <input type="text" id="edit-name" name="name" required>
+                </div>
+     
+                <div class="form-group">
+                    <label for="edit-phone">Phone Number</label>
+                    <input type="tel" id="edit-phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-location">Location</label>
+                    <input type="text" id="edit-location" name="location" required>
+                </div>           
+
+
+
+
+
+      <div class="form-group">
+                    <label for="edit-category">Category</label>
+                    <select id="edit-category" name="category" required>
+                        <option value="">Select</option>
+                        <option value="personal">Personal Help</option>
+                        <option value="calamity">Calamity Relief</option>
+                        <option value="financial">Financial Aid</option>
+                        <option value="medical">Medical Assistance</option>
+                        <option value="education">Educational Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+          <div class="form-group">
+                    <label for="edit-urgency">Urgency Level</label>
+                    <select id="edit-urgency" name="urgency" required>
+                        <option value="">Select</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+          
+     <div class="form-group">
+                    <label for="edit-description">Describe Your Need</label>
+                    <textarea id="edit-description" name="description" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Update Post</button>
+            </form>
+        </div>
+    </div>           
+
+    <div id="actions-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="actions-content"></div>
+        </div>
+    </div>
+
+    
+    <script src="js/need-help.js"></script>
+</body>
+</html>

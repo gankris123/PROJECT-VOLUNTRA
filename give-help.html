@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Help - Voluntra</title>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      <link rel="stylesheet" href="./css/give-help.css">
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+<header>
+        <h1>Voluntra</h1>
+        <nav>
+         
+            <a href="#give-help">Give Help</a>
+            <a href="index.html">log out</a>
+        </nav>
+    </header>
+
+     <div class="main-container">
+        <div class="left-panel">
+            <section id="give-help" class="content">
+                <h2>Help Requests</h2>
+                <p>Click on a request to view details and offer help.</p>
+                <div id="posts-container">
+                    <!-- Posts will be displayed here -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="post-details">
+        <h3>Select a post to view details</h3>
+        <p>Choose a help request from the left to see more information and help options.</p>
+    </div>
+
+    <footer id="footer" class="footer">
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@volunteernetwork.com">info@volunteernetwork.com</a></p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <p>Address: 2025 Community Street, Hope City</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a><br>
+                <a href="need-help.html">Need Help</a><br>
+                <a href="give-help.html">Give Help</a><br>
+                <a href="#give-help">View Posts</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <p><a href="#" target="_blank">📘 Facebook</a></p>
+                <p><a href="#" target="_blank">🐦 Twitter / X</a></p>
+                <p><a href="#" target="_blank">📸 Instagram</a></p>
+                <p><a href="#" target="_blank">💼 LinkedIn</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Voluntra — Making the world better together 🌍</p>
+        </div>
+    </footer>
+
+    <!-- Comment Modal -->
+    <div id="comment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add a Comment</h2>
+            <form id="comment-form" class="modal-form">
+                <textarea id="comment-text" placeholder="Write your comment..." required></textarea>
+                <input type="file" id="comment-image" accept="image/*">
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donate-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Make a Donation</h2>
+            <form id="donate-form" class="modal-form">
+                <select id="donate-type" required>
+                    <option value="">Select donation type</option>
+                    <option value="money">Money</option>
+                    <option value="things">Things</option>
+                    <option value="food">Food</option>
+                    <option value="other">Other</option>
+                </select>
+                <div id="money-options" style="display: none;">
+                    <input type="number" id="donate-amount" placeholder="Amount ($)" min="1">
+                    <select id="payment-method">
+                        <option value="">Select payment method</option>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="gcash">GCash</option>
+                        <option value="maya">Maya</option>
+                        <option value="online-bank">Online Bank</option>
+                        <option value="cash">Cash</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="item-options" style="display: none;">
+                    <input type="text" id="donate-item" placeholder="What are you donating?">
+                </div>
+                <textarea id="donate-message" placeholder="Optional message..."></textarea>
+                <button type="submit">Submit Donation</button>
+            </form>
+        </div>
+    </div>
+
+        <!-- Volunteer Modal -->
+    <div id="volunteer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Offer to Volunteer</h2>
+            <form id="volunteer-form" class="modal-form">
+                <input type="text" id="volunteer-name" placeholder="Your Name" required>
+                <select id="volunteer-type">
+                    <option value="">Select help type or type below</option>
+                    <option value="physical">Physical Help</option>
+                    <option value="teaching">Teaching/Education</option>
+                    <option value="medical">Medical Assistance</option>
+                    <option value="transport">Transportation</option>
+                    <option value="counseling">Counseling</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea id="volunteer-skills" placeholder="Describe how you can help..."></textarea>
+                <button type="submit">Submit Offer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content gallery-content">
+            <span class="close">&times;</span>
+            <h2>All Images</h2>
+            <div id="image-gallery" class="image-gallery"></div>
+        </div>
+    </div>
+
+    <script src="js/give-help.js"></script>
+</body>
+</html>  

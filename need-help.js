@@ -146,4 +146,10 @@ function deletePost(index) {
     // Show modal
     document.getElementById('edit-modal').style.display = 'block';
 }
+// Modal close
+document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('edit-modal').style.display = 'none';
+    editingIndex = -1;
+});
+
 

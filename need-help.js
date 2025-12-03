@@ -273,3 +273,24 @@ document.getElementById('select-location-btn').addEventListener('click', functio
             });
     }
 });
+
+
+function initMap() {
+    if (map) {
+        map.remove();
+    }
+    map = L.map('map').setView([12.8797, 121.7740], 6); // Philippines center
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    map.on('click', function(e) {
+        if (marker) {
+            map.removeLayer(marker);
+        }
+        marker = L.marker(e.latlng).addTo(map);
+        selectedLatLng = e.latlng;
+    });
+}
+

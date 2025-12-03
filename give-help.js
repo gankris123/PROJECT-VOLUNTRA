@@ -84,5 +84,20 @@ const commentsCount = (post.comments || []).length;
 
         container.appendChild(postDiv);
 
+        // Init map if location
+        if (post.lat && post.lng) {
+            setTimeout(() => {
+                const mapId = `map-${posts.indexOf(post)}`;
+                const smallMap = L.map(mapId).setView([post.lat, post.lng], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(smallMap);
+                L.marker([post.lat, post.lng]).addTo(smallMap);
+            }, 100);
+        }
+    });
+}
+
+
+
+
  }); 
  }

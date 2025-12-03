@@ -61,5 +61,28 @@ function displayPosts(posts) {
                 imageHtml += '</div>';
             }
 }
+
+const commentsCount = (post.comments || []).length;
+        const donationsCount = (post.donations || []).length;
+        const volunteersCount = (post.volunteers || []).length;
+
+        postDiv.innerHTML = `
+            ${imageHtml}
+            ${post.lat && post.lng ? `<div class="post-map" id="map-${posts.indexOf(post)}" style="height: 150px; margin-top: 10px;"></div>` : ''}
+            <div class="post-actions">
+                <button class="comment-btn" data-index="${posts.indexOf(post)}">💬 Comment (${commentsCount})</button>
+                <button class="donate-btn" data-index="${posts.indexOf(post)}">💰 Donate (${donationsCount})</button>
+                <button class="volunteer-btn" data-index="${posts.indexOf(post)}">🤝 Volunteer (${volunteersCount})</button>
+            </div>
+            <h3>${post.name} needs help</h3>
+            <p><strong>Category:</strong> ${categoryText}</p>
+            <p><strong>Location:</strong> ${post.location}</p>
+            <p><strong>Urgency:</strong> ${urgencyText}</p>
+            <p><strong>Description:</strong> ${post.description}</p>
+            <p class="meta">Posted on ${new Date(post.timestamp).toLocaleString()}</p>
+        `;
+
+        container.appendChild(postDiv);
+
  }); 
  }

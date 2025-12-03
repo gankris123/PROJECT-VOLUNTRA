@@ -96,6 +96,25 @@ function displayPosts(posts) {
         }
     });
 }
+// Load posts on page load
+document.addEventListener("DOMContentLoaded", loadPosts);
+
+// Edit, delete, and view more handlers
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('delete-btn')) {
+        const index = parseInt(e.target.getAttribute('data-index'));
+        deletePost(index);
+    } else if (e.target.classList.contains('edit-btn')) {
+        const index = parseInt(e.target.getAttribute('data-index'));
+        editPost(index);
+    } else if (e.target.classList.contains('view-actions-btn')) {
+        const index = parseInt(e.target.getAttribute('data-index'));
+        openActionsModal(index);
+    } else if (e.target.closest('.view-more')) {
+        const images = JSON.parse(e.target.closest('.view-more').getAttribute('data-images'));
+        showImageGallery(images);
+    }
+});
 
 
 

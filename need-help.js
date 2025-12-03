@@ -96,6 +96,7 @@ function displayPosts(posts) {
         }
     });
 }
+
 // Load posts on page load
 document.addEventListener("DOMContentLoaded", loadPosts);
 

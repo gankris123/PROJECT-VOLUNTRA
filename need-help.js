@@ -164,5 +164,64 @@ window.addEventListener('click', function(event) {
     }
 });
 
+    // Edit form submit
+document.getElementById('edit-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('edit-name').value.trim();
+    const phone = document.getElementById('edit-phone').value.trim();
+    const location = document.getElementById('edit-location').value.trim();
+    const category = document.getElementById('edit-category').value;
+    const urgency = document.getElementById('edit-urgency').value;
+    const description = document.getElementById('edit-description').value.trim();
+
+    if (!name || !location || !category || !urgency || !description) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    const posts = JSON.parse(localStorage.getItem("voluntraPosts")) || [];
+    posts[editingIndex] = {
+        name,
+        phone,
+        location,
+        category,
+        urgency,
+        description,
+        image: posts[editingIndex].image, // Keep existing image
+        timestamp: posts[editingIndex].timestamp // Keep original timestamp
+    };
+
+    savePosts(posts);
+    displayPosts(posts);
+
+    // Close modal
+    document.getElementById('edit-modal').style.display = 'none';
+    editingIndex = -1;
+
+    showMessage('Post updated successfully!', 'success');
+});
+
+// Show image gallery modal
+function showImageGallery(images) {
+    const gallery = document.getElementById('image-gallery');
+    gallery.innerHTML = '';
+
+    images.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Image ${index + 1}`;
+        gallery.appendChild(img);
+    });
+
+    document.getElementById('image-modal').style.display = 'block';
+}
+
+// Close image modal
+document.querySelectorAll('.close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', function() {
+        this.closest('.modal').style.display = 'none';
+    });
+});
 
 

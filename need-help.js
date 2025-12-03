@@ -224,4 +224,9 @@ document.querySelectorAll('.close').forEach(closeBtn => {
         this.closest('.modal').style.display = 'none';
     });
 });
+// Map functionality
+document.getElementById('select-location-btn').addEventListener('click', function() {
+    document.getElementById('map-modal').style.display = 'block';
+    initMap();
+});
 

@@ -291,8 +291,36 @@ document.getElementById('donate-type').addEventListener('change', function() {
     }
 });
 
+// Functions to add actions
+function addComment(index, comment) {
+    const posts = JSON.parse(localStorage.getItem("voluntraPosts")) || [];
+    if (!posts[index].comments) posts[index].comments = [];
+    posts[index].comments.push(comment);
+    localStorage.setItem("voluntraPosts", JSON.stringify(posts));
+    displayPosts(posts);
+}
+
+function addDonation(index, donation) {
+    const posts = JSON.parse(localStorage.getItem("voluntraPosts")) || [];
+    if (!posts[index].donations) posts[index].donations = [];
+    posts[index].donations.push(donation);
+    localStorage.setItem("voluntraPosts", JSON.stringify(posts));
+    displayPosts(posts);
+}
+
+function addVolunteer(index, volunteer) {
+    const posts = JSON.parse(localStorage.getItem("voluntraPosts")) || [];
+    if (!posts[index].volunteers) posts[index].volunteers = [];
+    posts[index].volunteers.push(volunteer);
+    localStorage.setItem("voluntraPosts", JSON.stringify(posts));
+    displayPosts(posts);
+}
 
 
+const footerText = document.querySelector("footer p");
+if (footerText) {
+    footerText.innerHTML = `© ${new Date().getFullYear()} Voluntra — Making the world better together 🌍`;
+}
 
- }); 
- }
+
+ 

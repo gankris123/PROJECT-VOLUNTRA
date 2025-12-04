@@ -274,5 +274,25 @@ document.getElementById('volunteer-form').addEventListener('submit', function(e)
     }
 });
 
+// Toggle donation options
+document.getElementById('donate-type').addEventListener('change', function() {
+    const type = this.value;
+    const moneyOpts = document.getElementById('money-options');
+    const itemOpts = document.getElementById('item-options');
+    if (type === 'money') {
+        moneyOpts.style.display = 'block';
+        itemOpts.style.display = 'none';
+    } else if (type === 'things' || type === 'food' || type === 'other') {
+        moneyOpts.style.display = 'none';
+        itemOpts.style.display = 'block';
+    } else {
+        moneyOpts.style.display = 'none';
+        itemOpts.style.display = 'none';
+    }
+});
+
+
+
+
  }); 
  }
